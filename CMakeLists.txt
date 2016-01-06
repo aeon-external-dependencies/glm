@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1.0)
 
 project(glm)
 set(GLM_VERSION "0.9.8")
@@ -13,9 +13,9 @@ enable_testing()
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 option(GLM_TEST_ENABLE "GLM test" OFF)
-if(NOT GLM_TEST_ENABLE)
-	message(STATUS "GLM is a header only library, no need to build it. Set the option GLM_TEST_ENABLE with ON to build and run the test bench")
-endif()
+#if(NOT GLM_TEST_ENABLE)
+	#message(STATUS "GLM is a header only library, no need to build it. Set the option GLM_TEST_ENABLE with ON to build and run the test bench")
+#endif()
 
 if(("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU") OR (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel") AND UNIX))
 	option(GLM_TEST_ENABLE_CXX_98 "Enable C++ 98" OFF)

@@ -42,3 +42,10 @@ endif(GLM_TEST_ENABLE)
 
 #add_library(glm STATIC glm.cpp)
 #add_library(glm_shared SHARED glm.cpp)
+
+get_filename_component(GLM_INCLUDE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../" ABSOLUTE)
+
+add_library(glm INTERFACE IMPORTED)
+set_target_properties(glm PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${GLM_INCLUDE_PATH}"
+)
