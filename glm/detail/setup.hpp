@@ -19,7 +19,7 @@
 #if(defined(GLM_MESSAGES) && !defined(GLM_MESSAGE_VERSION_DISPLAYED))
 #	define GLM_MESSAGE_VERSION_DISPLAYED
 #	pragma message ("GLM: version 0.9.8.0")
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 // Report compiler detection
 #if defined(GLM_MESSAGES) && !defined(GLM_MESSAGE_COMPILER_DISPLAYED)
@@ -37,7 +37,7 @@
 #	else
 #		pragma message("GLM: Compiler not detected")
 #	endif
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Build model
@@ -61,7 +61,7 @@
 #	elif(GLM_MODEL == GLM_MODEL_32)
 #		pragma message("GLM: 32 bits model")
 #	endif//GLM_MODEL
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 #if defined(GLM_MESSAGES) && !defined(GLM_MESSAGE_ARCH_DISPLAYED)
 #	define GLM_MESSAGE_ARCH_DISPLAYED
@@ -92,7 +92,7 @@
 #	elif(GLM_ARCH == GLM_ARCH_PPC)
 #		pragma message("GLM: PowerPC architechture")
 #	endif//GLM_ARCH
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 ///////////////////////////////////////////////////////////////////////////////////
 // C++ Version
@@ -254,7 +254,7 @@
 #	if GLM_LANG & (GLM_LANG_CXXGNU_FLAG | GLM_LANG_CXXMS_FLAG)
 #		pragma message("GLM: Language extensions enabled")
 #	endif//GLM_LANG
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Has of C++ features
@@ -277,10 +277,10 @@
 #		define GLM_HAS_CXX11_STL 0
 #	endif
 #else
-#	define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && \
+#	define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
 		((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC48)) || \
 		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC2013)) || \
-		((GLM_PLATFORM != GLM_PLATFORM_WINDOWS) && (GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15)))
+		((GLM_PLATFORM != GLM_PLATFORM_WINDOWS) && (GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15))))
 #endif
 
 // N1720
@@ -540,7 +540,7 @@
 #	else
 #		pragma message("GLM: Swizzling operators disabled, #define GLM_SWIZZLE to enable swizzle operators")
 #	endif
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Clip control
@@ -676,7 +676,7 @@ namespace glm
 #	else
 #		pragma message("GLM: .length() returns glm::length_t, a typedef of int following the GLSL specification")
 #	endif
-#endif//GLM_MESSAGE
+#endif//GLM_MESSAGES
 
 ///////////////////////////////////////////////////////////////////////////////////
 // countof

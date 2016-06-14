@@ -83,6 +83,8 @@ glm::mat4 camera(float Translate, glm::vec2 const & Rotate)
 - Fixed intersectRayTriangle to not do any unintentional backface culling
 - Fixed long long warnings when using C++98 on GCC and Clang #482
 - Fixed sign with signed integer function on non-x86 architecture
+- Fixed strict aliaing warnings #473
+- Fixed missing vec1 overload to length2 and distance2 functions #431
 
 ##### Deprecation:
 - Removed GLM_FORCE_SIZE_FUNC define
@@ -93,6 +95,9 @@ glm::mat4 camera(float Translate, glm::vec2 const & Rotate)
 #### [GLM 0.9.7.6](https://github.com/g-truc/glm/tree/0.9.7) - 2016-0X-XX
 ##### Improvements:
 - Added pkg-config file #509
+
+##### Fixes:
+- Fixed STL for C++11 detection on ICC #510
 
 #### [GLM 0.9.7.5](https://github.com/g-truc/glm/releases/tag/0.9.7.5) - 2016-05-24
 ##### Improvements:
