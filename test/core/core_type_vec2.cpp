@@ -1,10 +1,14 @@
-#define GLM_SWIZZLE
+#define GLM_FORCE_SWIZZLE
 #include <glm/vector_relational.hpp>
 #include <glm/vec2.hpp>
 #include <vector>
 #if GLM_HAS_TRIVIAL_QUERIES
 #	include <type_traits>
 #endif
+
+static glm::vec2 v1;
+static glm::vec2 v2(1);
+static glm::vec2 v3(1, 1);
 
 int test_vec2_operators()
 {
@@ -230,7 +234,7 @@ int test_vec2_ctor()
 	}
 #endif
 
-#if GLM_HAS_UNRESTRICTED_UNIONS && defined(GLM_SWIZZLE)
+#if GLM_HAS_UNRESTRICTED_UNIONS && defined(GLM_FORCE_SWIZZLE)
 	{
 		glm::vec2 A = glm::vec2(1.0f, 2.0f);
 		glm::vec2 B = A.xy;
@@ -241,7 +245,7 @@ int test_vec2_ctor()
 		Error += glm::all(glm::equal(A, C)) ? 0 : 1;
 		Error += glm::all(glm::equal(A, D)) ? 0 : 1;
 	}
-#endif//GLM_HAS_UNRESTRICTED_UNIONS && defined(GLM_SWIZZLE)
+#endif//GLM_HAS_UNRESTRICTED_UNIONS && defined(GLM_FORCE_SWIZZLE)
 
 	{
 		glm::vec2 A = glm::vec2(2.0f);
@@ -265,6 +269,8 @@ int test_vec2_size()
 	Error += 16 == sizeof(glm::highp_dvec2) ? 0 : 1;
 	Error += glm::vec2().length() == 2 ? 0 : 1;
 	Error += glm::dvec2().length() == 2 ? 0 : 1;
+	Error += glm::vec2::length() == 2 ? 0 : 1;
+	Error += glm::dvec2::length() == 2 ? 0 : 1;
 
 	return Error;
 }

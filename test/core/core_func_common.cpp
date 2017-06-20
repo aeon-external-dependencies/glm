@@ -344,7 +344,7 @@ namespace clamp_
 
 namespace mix_
 {
-	template <typename T, typename B>
+	template<typename T, typename B>
 	struct entry
 	{
 		T x;
@@ -514,7 +514,7 @@ namespace mix_
 
 namespace step_
 {
-	template <typename EDGE, typename VEC>
+	template<typename EDGE, typename VEC>
 	struct entry
 	{
 		EDGE edge;
@@ -817,7 +817,7 @@ namespace isinf_
 
 namespace sign
 {
-	template <typename genFIType> 
+	template<typename genFIType> 
 	GLM_FUNC_QUALIFIER genFIType sign_if(genFIType x)
 	{
 		GLM_STATIC_ASSERT(
@@ -834,7 +834,7 @@ namespace sign
 		return result;
 	}
 
-	template <typename genFIType> 
+	template<typename genFIType> 
 	GLM_FUNC_QUALIFIER genFIType sign_alu1(genFIType x)
 	{
 		GLM_STATIC_ASSERT(
@@ -844,7 +844,7 @@ namespace sign
 		return (x >> 31) | ((unsigned)-x >> 31);
 	}
 
-	template <typename genFIType> 
+	template<typename genFIType> 
 	GLM_FUNC_QUALIFIER genFIType sign_alu2(genFIType x)
 	{
 		GLM_STATIC_ASSERT(
@@ -854,7 +854,7 @@ namespace sign
 		return -((unsigned)x >> 31) | (-(unsigned)x >> 31);
 	}
 
-	template <typename genFIType> 
+	template<typename genFIType> 
 	GLM_FUNC_QUALIFIER genFIType sign_sub(genFIType x)
 	{
 		GLM_STATIC_ASSERT(
@@ -864,7 +864,7 @@ namespace sign
 		return ((unsigned)-x >> 31) - ((unsigned)x >> 31);
 	}
 
-	template <typename genFIType> 
+	template<typename genFIType> 
 	GLM_FUNC_QUALIFIER genFIType sign_cmp(genFIType x)
 	{
 		GLM_STATIC_ASSERT(
@@ -874,7 +874,7 @@ namespace sign
 		return (x > 0) - (x < 0);
 	}
 
-	template <typename genType>
+	template<typename genType>
 	struct type
 	{
 		genType		Value;
@@ -955,12 +955,37 @@ namespace sign
 		return Error;
 	}
 
+	int test_f32vec4()
+	{
+		type<glm::vec4> const Data[] =
+		{
+			{glm::vec4( 1), glm::vec4( 1)},
+			{glm::vec4( 0), glm::vec4( 0)},
+			{glm::vec4( 2), glm::vec4( 1)},
+			{glm::vec4( 3), glm::vec4( 1)},
+			{glm::vec4(-1), glm::vec4(-1)},
+			{glm::vec4(-2), glm::vec4(-1)},
+			{glm::vec4(-3), glm::vec4(-1)}
+		};
+
+		int Error = 0;
+
+		for(std::size_t i = 0; i < sizeof(Data) / sizeof(type<glm::vec4>); ++i)
+		{
+			glm::vec4 Result = glm::sign(Data[i].Value);
+			Error += glm::all(glm::equal(Data[i].Return, Result)) ? 0 : 1;
+		}
+
+		return Error;
+	}
+
 	int test()
 	{
 		int Error = 0;
 
 		Error += test_int32();
 		Error += test_i32vec4();
+		Error += test_f32vec4();
 
 		return Error;
 	}
